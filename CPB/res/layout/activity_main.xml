@@ -8,20 +8,78 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Episodes :"
+            android:layout_marginLeft="10px"
+            android:textColor="#0080FF"
+            android:textSize="26px" />
+
+        <Spinner
+            android:id="@+id/episodes_spn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5" />
+
+        <Button
+            android:id="@+id/btn_paste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Coller" />
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Maj" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Recherche :"
+            android:textColor="#0080FF"
+            android:layout_marginLeft="10px"
+            android:textSize="26px" />
+
         <EditText
             android:id="@+id/search_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="6"/>
-
+            android:layout_weight="6" />
+		
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Raz" />
+        
         <Button
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Rechercher" />
+            android:text="Ziva!" />
     </LinearLayout>
-
+	
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="5px"
+        android:background="#0080FF" />
+    
     <ListView
         android:id="@+id/torrent_list"
         android:layout_width="fill_parent"
