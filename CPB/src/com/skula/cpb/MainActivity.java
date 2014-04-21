@@ -8,6 +8,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -31,7 +34,6 @@ import com.skula.cpb.services.TransmissionService;
 
 public class MainActivity extends Activity {
 	private ListView itemList;
-	private EditText request;
 	private Spinner episodesSpn;
 	private SearchView searchView;
 	private BetaserieService betaSrv;
@@ -44,10 +46,16 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 	
 		this.searchView = (SearchView) findViewById(R.id.episodes_search);
+		searchView.setIconifiedByDefault(false);
 		searchView.setOnQueryTextListener(new OnQueryTextListener() {
 			
 			public boolean onQueryTextSubmit(String query) {
-				
+				if(!query.equals("")){
+					try {
+						fillList(CestPasBienService.search(query));
+					} catch (Exception e) {
+					}
+				}
 				return false;
 			}
 			
@@ -55,15 +63,26 @@ public class MainActivity extends Activity {
 				
 				return false;
 			}
-		});
-		searchView.setQuery("test", true);
+		});		
 		
 		this.betaSrv = new BetaserieService();
 		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
 		updateEpisodeList();
+
+		episodesSpn.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				searchView.setQuery(episodesSpn.getItemAtPosition(arg2).toString(), true);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				
+			}
+		});
 		
-		
-		this.request = (EditText) findViewById(R.id.search_request);
 		this.itemList = (ListView) findViewById(R.id.torrent_list);
 		itemList.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
@@ -78,44 +97,6 @@ public class MainActivity extends Activity {
 					Toast.makeText(v.getContext(), "Erreur !", Toast.LENGTH_SHORT).show();
 				}
 				return true;
-			}
-		});
-		
-		Button btnSearch = (Button)findViewById(R.id.btn_search);
-		btnSearch.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String req = request.getText().toString();
-				if(!req.equals("")){
-					try {
-						fillList(CestPasBienService.search(req));
-					} catch (Exception e) {
-					}
-				}
-			}
-		});
-		
-		Button btnClear = (Button)findViewById(R.id.btn_clear);
-		btnClear.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				request.setText("");
-			}
-		});
-		
-		Button btnPaste = (Button)findViewById(R.id.btn_paste);
-		btnPaste.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				request.setText(String.valueOf(episodesSpn.getSelectedItem()));
-			}
-		});
-		
-		Button btnRefresh = (Button)findViewById(R.id.btn_refresh);
-		btnRefresh.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				updateEpisodeList();
 			}
 		});
 	}
@@ -134,6 +115,24 @@ public class MainActivity extends Activity {
 		episodesSpn.setAdapter(epAdapter);
 		}catch(Exception e){
 			e.getMessage();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case R.id.refresh:
+			updateEpisodeList();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 }

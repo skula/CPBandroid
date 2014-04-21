@@ -3,83 +3,22 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <Spinner
+        android:id="@+id/episodes_spn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
     <SearchView
-        	android:id="@+id/episodes_search"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-    <LinearLayout
+        android:id="@+id/episodes_search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:text="Episodes :"
-            android:textColor="#0080FF"
-            android:textSize="16px" />
-
-        <Spinner
-            android:id="@+id/episodes_spn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btn_paste"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Coller" />
-
-        <Button
-            android:id="@+id/btn_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Maj" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:text="Recherche :"
-            android:textColor="#0080FF"
-            android:textSize="16px" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <EditText
-                android:id="@+id/search_request"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:background="@android:drawable/ic_menu_close_clear_cancel" />
-        </FrameLayout>
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="2px"
+        android:layout_height="3px"
         android:layout_marginTop="5px"
-        android:background="#0080FF" />
+        android:background="#656565" 
+        android:layout_gravity="center_horizontal"/>
 
     <ListView
         android:id="@+id/torrent_list"
