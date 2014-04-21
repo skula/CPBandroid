@@ -3,6 +3,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <SearchView
+        	android:id="@+id/episodes_search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -12,29 +16,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10px"
-            android:layout_weight="1"
             android:text="Episodes :"
             android:textColor="#0080FF"
-            android:textSize="26px" />
+            android:textSize="16px" />
 
         <Spinner
             android:id="@+id/episodes_spn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5" />
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btn_paste"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Coller" />
 
         <Button
             android:id="@+id/btn_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Maj" />
     </LinearLayout>
 
@@ -49,7 +49,7 @@
             android:layout_marginLeft="10px"
             android:text="Recherche :"
             android:textColor="#0080FF"
-            android:textSize="26px" />
+            android:textSize="16px" />
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
 
             <EditText
                 android:id="@+id/search_request"
-                android:layout_width="500px"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <Button
@@ -72,7 +72,7 @@
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ziva!" />
+            android:text="Go" />
     </LinearLayout>
 
     <View

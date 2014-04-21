@@ -7,8 +7,10 @@ import java.util.Map;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -16,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,7 +33,7 @@ public class MainActivity extends Activity {
 	private ListView itemList;
 	private EditText request;
 	private Spinner episodesSpn;
-	
+	private SearchView searchView;
 	private BetaserieService betaSrv;
 	
 	@Override
@@ -39,6 +43,20 @@ public class MainActivity extends Activity {
 		StrictMode.setThreadPolicy(policy);	
 		setContentView(R.layout.activity_main);
 	
+		this.searchView = (SearchView) findViewById(R.id.episodes_search);
+		searchView.setOnQueryTextListener(new OnQueryTextListener() {
+			
+			public boolean onQueryTextSubmit(String query) {
+				
+				return false;
+			}
+			
+			public boolean onQueryTextChange(String newText) {
+				
+				return false;
+			}
+		});
+		
 		this.betaSrv = new BetaserieService();
 		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
 		updateEpisodeList();
@@ -111,6 +129,10 @@ public class MainActivity extends Activity {
 	private void updateEpisodeList(){
 		ArrayAdapter<String> epAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, betaSrv.getUnseenEpisodes());
 		epAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		try{
 		episodesSpn.setAdapter(epAdapter);
+		}catch(Exception e){
+			e.getMessage();
+		}
 	}
 }
