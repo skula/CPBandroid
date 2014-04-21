@@ -56,6 +56,7 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
+		searchView.setQuery("test", true);
 		
 		this.betaSrv = new BetaserieService();
 		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
