@@ -8,21 +8,31 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
-    <SearchView
-        android:id="@+id/episodes_search"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btn_list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <SearchView
+            android:id="@+id/episodes_search"
+            android:layout_width="wrap_content"
+            android:layout_weight="4"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_weight="1"
+            android:text="|||"/>
+    </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="3px"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="5px"
-        android:background="#656565" 
-        android:layout_gravity="center_horizontal"/>
+        android:background="#656565" />
 
     <ListView
         android:id="@+id/torrent_list"

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,7 @@ public class MainActivity extends Activity {
 	private Spinner episodesSpn;
 	private SearchView searchView;
 	private BetaserieService betaSrv;
+	private String[] sts;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class MainActivity extends Activity {
 		StrictMode.setThreadPolicy(policy);	
 		setContentView(R.layout.activity_main);
 	
+		
+		
 		this.searchView = (SearchView) findViewById(R.id.episodes_search);
 		searchView.setIconifiedByDefault(false);
 		searchView.setOnQueryTextListener(new OnQueryTextListener() {
@@ -70,33 +75,37 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Builder l = new AlertDialog.Builder(v.getContext());
+				AlertDialog.Builder l = new AlertDialog.Builder(v.getContext());
+				l.setTitle("Liste des épisodes");
 				final ListView lv = new ListView(v.getContext());
-				lv.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-					@Override
-					public void onItemSelected(AdapterView<?> arg0, View arg1,
-							int arg2, long arg3) {
-						searchView.setQuery(lv.getItemAtPosition(arg2).toString(), false);						
-					}
-
-					@Override
-					public void onNothingSelected(AdapterView<?> arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-				});
-				String[] sts= new String[]{"coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test"};
 				ArrayAdapter<String> ada = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_expandable_list_item_1, sts);
 				lv.setAdapter(ada);
-				
+					
 				l.setView(lv);
 				final Dialog dialog = l.create();
 				dialog.show();
+				
+				lv.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						searchView.setQuery(lv.getItemAtPosition(arg2).toString(), false);
+						dialog.cancel();
+					}
+				});
+				
+		
+				
 			}
 		});
 		
 		this.betaSrv = new BetaserieService();
+		List<String> prout = betaSrv.getUnseenEpisodes();
+		sts = prout.toArray(new String[prout.size()]);
+		//sts= new String[]{"coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test"};
+		
+		
 		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
 		updateEpisodeList();
 
