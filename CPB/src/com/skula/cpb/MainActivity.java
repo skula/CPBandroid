@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
@@ -65,6 +65,37 @@ public class MainActivity extends Activity {
 			}
 		});		
 		
+		Button b  = (Button) findViewById(R.id.btn_list);
+		b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Builder l = new AlertDialog.Builder(v.getContext());
+				final ListView lv = new ListView(v.getContext());
+				lv.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						searchView.setQuery(lv.getItemAtPosition(arg2).toString(), false);						
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				String[] sts= new String[]{"coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test"};
+				ArrayAdapter<String> ada = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_expandable_list_item_1, sts);
+				lv.setAdapter(ada);
+				
+				l.setView(lv);
+				final Dialog dialog = l.create();
+				dialog.show();
+			}
+		});
+		
 		this.betaSrv = new BetaserieService();
 		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
 		updateEpisodeList();
@@ -75,6 +106,7 @@ public class MainActivity extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				searchView.setQuery(episodesSpn.getItemAtPosition(arg2).toString(), true);
+				
 			}
 
 			@Override
@@ -100,6 +132,8 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
+	
+	
 
 	private void fillList(List<Map<String, String>> list) {
 		SimpleAdapter simpleAdpt = new SimpleAdapter(this, list, 

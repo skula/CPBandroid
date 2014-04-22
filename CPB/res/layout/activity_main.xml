@@ -12,6 +12,10 @@
         android:id="@+id/episodes_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="fill_parent"

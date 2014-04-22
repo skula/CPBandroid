@@ -25,12 +25,13 @@ public final class R {
         public static final int logo=0x7f020001;
     }
     public static final class id {
+        public static final int btn_list=0x7f080002;
         public static final int episodes_search=0x7f080001;
         public static final int episodes_spn=0x7f080000;
-        public static final int refresh=0x7f080005;
-        public static final int torrent_label=0x7f080004;
-        public static final int torrent_list=0x7f080002;
-        public static final int torrent_url=0x7f080003;
+        public static final int refresh=0x7f080006;
+        public static final int torrent_label=0x7f080005;
+        public static final int torrent_list=0x7f080003;
+        public static final int torrent_url=0x7f080004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
