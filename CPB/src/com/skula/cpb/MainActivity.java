@@ -32,14 +32,14 @@ import android.widget.Toast;
 import com.skula.cpb.services.BetaserieService;
 import com.skula.cpb.services.CestPasBienService;
 import com.skula.cpb.services.TransmissionService;
+import com.skula.cpb.utils.NetworkUtils;
 
 
 public class MainActivity extends Activity {
 	private ListView itemList;
-	private Spinner episodesSpn;
 	private SearchView searchView;
 	private BetaserieService betaSrv;
-	private String[] sts;
+	private String[] unseenEpisodes;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,13 +47,14 @@ public class MainActivity extends Activity {
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);	
 		setContentView(R.layout.activity_main);
-	
 		
+		this.betaSrv = new BetaserieService();
+		updateEpisodeList();
+		//Toast.makeText(this, "Aucune connexion au réseau !", Toast.LENGTH_SHORT).show();
 		
 		this.searchView = (SearchView) findViewById(R.id.episodes_search);
 		searchView.setIconifiedByDefault(false);
-		searchView.setOnQueryTextListener(new OnQueryTextListener() {
-			
+		searchView.setOnQueryTextListener(new OnQueryTextListener() {		
 			public boolean onQueryTextSubmit(String query) {
 				if(!query.equals("")){
 					try {
@@ -64,29 +65,25 @@ public class MainActivity extends Activity {
 				return false;
 			}
 			
-			public boolean onQueryTextChange(String newText) {
-				
+			public boolean onQueryTextChange(String newText) {		
 				return false;
 			}
 		});		
 		
-		Button b  = (Button) findViewById(R.id.btn_list);
-		b.setOnClickListener(new OnClickListener() {
-			
+		Button btnList = (Button) findViewById(R.id.btn_list);
+		btnList.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				AlertDialog.Builder l = new AlertDialog.Builder(v.getContext());
-				l.setTitle("Liste des épisodes");
+				AlertDialog.Builder dialBuilder = new AlertDialog.Builder(v.getContext());
+				dialBuilder.setTitle("Episodes non téléchargés");
 				final ListView lv = new ListView(v.getContext());
-				ArrayAdapter<String> ada = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_expandable_list_item_1, sts);
-				lv.setAdapter(ada);
-					
-				l.setView(lv);
-				final Dialog dialog = l.create();
+				ArrayAdapter<String> ada = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_expandable_list_item_1, unseenEpisodes);
+				lv.setAdapter(ada);		
+				dialBuilder.setView(lv);
+				final Dialog dialog = dialBuilder.create();
 				dialog.show();
 				
 				lv.setOnItemClickListener(new OnItemClickListener() {
-
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
@@ -94,33 +91,6 @@ public class MainActivity extends Activity {
 						dialog.cancel();
 					}
 				});
-				
-		
-				
-			}
-		});
-		
-		this.betaSrv = new BetaserieService();
-		List<String> prout = betaSrv.getUnseenEpisodes();
-		sts = prout.toArray(new String[prout.size()]);
-		//sts= new String[]{"coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test","coucou", "test"};
-		
-		
-		this.episodesSpn = (Spinner) findViewById(R.id.episodes_spn);
-		updateEpisodeList();
-
-		episodesSpn.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				searchView.setQuery(episodesSpn.getItemAtPosition(arg2).toString(), true);
-				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				
 			}
 		});
 		
@@ -141,8 +111,6 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-	
-	
 
 	private void fillList(List<Map<String, String>> list) {
 		SimpleAdapter simpleAdpt = new SimpleAdapter(this, list, 
@@ -152,12 +120,11 @@ public class MainActivity extends Activity {
 	}
 	
 	private void updateEpisodeList(){
-		ArrayAdapter<String> epAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, betaSrv.getUnseenEpisodes());
-		epAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		try{
-		episodesSpn.setAdapter(epAdapter);
-		}catch(Exception e){
-			e.getMessage();
+		List<String> l = betaSrv.getUnseenEpisodes();
+		if(l==null){
+			this.unseenEpisodes = new String[0];
+		}else{
+			this.unseenEpisodes = l.toArray(new String[l.size()]);
 		}
 	}
 
@@ -173,6 +140,9 @@ public class MainActivity extends Activity {
 		switch(item.getItemId()){
 		case R.id.refresh:
 			updateEpisodeList();
+			return true;
+		case R.id.param:
+			// TODO
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
