@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						searchView.setQuery(lv.getItemAtPosition(arg2).toString(), false);
+						searchView.setQuery(lv.getItemAtPosition(arg2).toString(), true);
 						dialog.cancel();
 					}
 				});
