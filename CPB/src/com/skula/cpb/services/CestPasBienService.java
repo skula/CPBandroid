@@ -79,6 +79,11 @@ public class CestPasBienService {
 		if(!s2.contains(DL_TORRENT_URL)){
 			return null;
 		}
+		
+		if(s2.contains("<!--")){
+			return null;
+		}
+		
 		Map<String, String> map = new HashMap<String, String>();
 		
 		String url = s2;

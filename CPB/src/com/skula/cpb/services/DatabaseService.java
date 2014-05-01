@@ -26,7 +26,7 @@ public class DatabaseService {
 
 	public void bouchon() {
 		database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PARAM);
-		database.execSQL("CREATE TABLE " + TABLE_NAME_PARAM  + "(name INTEGER PRIMARY KEY, val TEXT)");
+		database.execSQL("CREATE TABLE " + TABLE_NAME_PARAM  + "(name TEXT PRIMARY KEY, val TEXT)");
 		
 		insertParam(Cnst.PARAM_IP_TRANSMISSION, "192.168.1.52");
 		insertParam(Cnst.PARAM_PORT_TRANSMISSION, "9091");
@@ -57,7 +57,7 @@ public class DatabaseService {
 	}
 
 	public String getParam(String name) {
-		Cursor cursor = database.query(TABLE_NAME_PARAM, new String[] { "val" }, "name=" + name, null, null, null, null);
+		Cursor cursor = database.query(TABLE_NAME_PARAM, new String[] { "val" }, "name='" + name +"'", null, null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				return cursor.getString(0);
@@ -76,7 +76,7 @@ public class DatabaseService {
 
 		@Override
 		public void onCreate(SQLiteDatabase database) {
-			database.execSQL("CREATE TABLE " + TABLE_NAME_PARAM  + "(name INTEGER PRIMARY KEY, val TEXT)");
+			database.execSQL("CREATE TABLE " + TABLE_NAME_PARAM  + "(name TEXT PRIMARY KEY, val TEXT)");
 		}
 
 		@Override

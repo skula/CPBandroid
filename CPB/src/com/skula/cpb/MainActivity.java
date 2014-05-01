@@ -6,9 +6,8 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -19,20 +18,17 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.skula.cpb.services.BetaserieService;
 import com.skula.cpb.services.CestPasBienService;
 import com.skula.cpb.services.TransmissionService;
-import com.skula.cpb.utils.NetworkUtils;
 
 
 public class MainActivity extends Activity {
@@ -142,7 +138,13 @@ public class MainActivity extends Activity {
 			updateEpisodeList();
 			return true;
 		case R.id.param:
-			// TODO
+			Intent intent = new Intent(this,
+					ParamActivity.class);
+			try{
+			startActivity(intent);
+			}catch(Exception e){
+				e.getMessage();
+			}
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

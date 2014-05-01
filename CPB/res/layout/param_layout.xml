@@ -3,115 +3,185 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-	 <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Transmission"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#333333"
+        android:gravity="center_horizontal"
+        android:text="Transmission"
+        android:textColor="#ffffff"
+        android:textSize="30px" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="200px"
             android:layout_height="wrap_content"
-            android:text="Ip"/>
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:text="Ip"
+            android:textColor="#ffffff"
+            android:textSize="30px" />
+
         <EditText
             android:id="@+id/trans_ip"
-            android:layout_width="wrap_content"
+            android:layout_width="500px"
             android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="200px"
             android:layout_height="wrap_content"
-            android:text="Port"/>
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:text="Port"
+            android:textColor="#ffffff"
+            android:textSize="30px" />
+
         <EditText
             android:id="@+id/trans_port"
-            android:layout_width="wrap_content"
+            android:layout_width="500px"
             android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:layout_width="200px"
+            android:layout_height="wrap_content"            
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:textSize="30px" />
+
         <EditText
             android:id="@+id/trans_login"
-            android:layout_width="wrap_content"
+            android:layout_width="500px"
             android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"            
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30px" 
             android:text="MdP"/>
+
         <EditText
             android:id="@+id/trans_pw"
-            android:layout_width="wrap_content"
+            android:layout_width="500px"
             android:layout_height="wrap_content"/>
-	</LinearLayout>
+    </LinearLayout>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#333333"
+        android:gravity="center_horizontal"
+        android:text="Betaseries"
+        android:textColor="#ffffff"
+        android:textSize="30px" />
 
-	<TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Betaseries"/>
-	<LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:layout_width="200px"
+            android:layout_height="wrap_content"            
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30px" 
+            android:text="Login" />
+
         <EditText
             android:id="@+id/beta_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+            android:layout_width="500px"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mdp"/>
+            android:layout_width="200px"
+            android:layout_height="wrap_content"            
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30px" 
+            android:text="Mdp" />
+
         <EditText
             android:id="@+id/beta_pw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+            android:layout_width="500px"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cl�"/>
+            android:layout_width="200px"
+            android:layout_height="wrap_content"            
+            android:layout_marginLeft="15px"
+            android:background="#333333"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="30px" 
+            android:text="Clé" />
+
         <EditText
             android:id="@+id/beta_key"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-	</LinearLayout>
-	
-	<LinearLayout
+            android:layout_width="500px"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="200px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#333333"
+        android:textColor="#ffffff"
+        android:text="Sauvegarder" />
+
+    <!--
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
+
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
@@ -126,5 +196,6 @@
             android:layout_weight="1"
             android:text="Annuler" />
     </LinearLayout>
+    -->
 
 </LinearLayout>
