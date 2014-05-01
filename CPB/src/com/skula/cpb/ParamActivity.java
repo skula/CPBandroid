@@ -29,11 +29,7 @@ public class ParamActivity extends Activity {
 		setContentView(R.layout.param_layout);
 	
 		this.dbService = new DatabaseService(this);
-		try{
-		dbService.bouchon();
-		}catch(Exception e){
-			e.getMessage();
-		}
+		//dbService.bouchon();
 		
 		this.transIp = (EditText) findViewById(R.id.trans_ip);
 		this.transPort = (EditText) findViewById(R.id.trans_port);
@@ -122,8 +118,8 @@ public class ParamActivity extends Activity {
 		this.transIp.setText(dbService.getParam(Cnst.PARAM_IP_TRANSMISSION));
 		this.transPort.setText(dbService.getParam(Cnst.PARAM_PORT_TRANSMISSION));
 		this.transLogin.setText(dbService.getParam(Cnst.PARAM_LOGIN_TRANSMISSION));
-		//this.transPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));
-		this.transPw.setText("*************");
+		this.transPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));
+		//this.transPw.setText("********");
 		
 		/*this.betaLogin.setText(dbService.getParam(Cnst.PARAM_LOGIN_BETASERIES));
 		//this.betaPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));

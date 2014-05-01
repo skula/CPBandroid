@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.skula.cpb.services.BetaserieService;
 import com.skula.cpb.services.CestPasBienService;
+import com.skula.cpb.services.DatabaseService;
 import com.skula.cpb.services.TransmissionService;
 
 
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
 	private SearchView searchView;
 	private BetaserieService betaSrv;
 	private String[] unseenEpisodes;
+	private DatabaseService dbService;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends Activity {
 		StrictMode.setThreadPolicy(policy);	
 		setContentView(R.layout.activity_main);
 		
+		this.dbService = new DatabaseService(this);
 		this.betaSrv = new BetaserieService();
 		updateEpisodeList();
 		//Toast.makeText(this, "Aucune connexion au réseau !", Toast.LENGTH_SHORT).show();
@@ -97,7 +100,12 @@ public class MainActivity extends Activity {
 				HashMap<String, String> m = (HashMap) itemList.getAdapter().getItem(position);
 				String url = m.get("url");
 				
-				TransmissionService ts = new TransmissionService();
+				String ip = dbService.getParam(Cnst.PARAM_IP_TRANSMISSION);
+				String port = dbService.getParam(Cnst.PARAM_PORT_TRANSMISSION);
+				String login = dbService.getParam(Cnst.PARAM_LOGIN_TRANSMISSION);
+				String pw = dbService.getParam(Cnst.PARAM_PW_TRANSMISSION);
+				
+				TransmissionService ts = new TransmissionService(ip, Integer.valueOf(port), login, pw);
 				if(ts.addTorrent(url)){
 					Toast.makeText(v.getContext(), "Torrent ajouté !", Toast.LENGTH_SHORT).show();
 				} else{
