@@ -3,6 +3,16 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <!-- 
+    NEXUS 7
+    header: android:layout_width="_200px"
+    edit: android:layout_width="_500px"
+    DESIRE X 
+    header: android:layout_width="_200px"
+    edit: android:layout_width="_500px"
+        
+    -->
+    
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -18,7 +28,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -29,7 +39,7 @@
 
         <EditText
             android:id="@+id/trans_ip"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -39,7 +49,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -50,7 +60,7 @@
 
         <EditText
             android:id="@+id/trans_port"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -60,7 +70,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"            
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -71,7 +81,7 @@
 
         <EditText
             android:id="@+id/trans_login"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -81,7 +91,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"            
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -92,7 +102,7 @@
 
         <EditText
             android:id="@+id/trans_pw"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     
@@ -111,7 +121,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"            
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -122,7 +132,7 @@
 
         <EditText
             android:id="@+id/beta_login"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -132,7 +142,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"            
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -143,7 +153,7 @@
 
         <EditText
             android:id="@+id/beta_pw"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
@@ -153,7 +163,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="200px"
+            android:layout_width="150px"
             android:layout_height="wrap_content"            
             android:layout_marginLeft="15px"
             android:background="#333333"
@@ -164,12 +174,13 @@
 
         <EditText
             android:id="@+id/beta_key"
-            android:layout_width="500px"
+            android:layout_width="300px"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_save"
+        android:layout_marginTop="10px"
         android:layout_width="200px"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

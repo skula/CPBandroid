@@ -16,9 +16,9 @@ public class CestPasBienService {
 	private static final String USER_ARENT = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11";
 	private static final String COOKIE = ""; //__cfduid=df83fae0487b4e39f73f8837ca250e35e1369247829
 	
-	private static final String SEARCH_URL = "http://www.cpasbien.me/recherche/";
-	private static final String DL_TORRENT_URL = "http://www.cpasbien.me/dl-torrent";
-	private static final String TORRENT_URL = "http://www.cpasbien.me/_torrents/";
+	private static final String SEARCH_URL = "http://www.cpasbien.pe/recherche/";
+	private static final String DL_TORRENT_URL = "http://www.cpasbien.pe/dl-torrent";
+	private static final String TORRENT_URL = "http://www.cpasbien.pe/_torrents/";
 	private static final String PARAMS = "champ_recherche=";
 
 	
@@ -54,6 +54,7 @@ public class CestPasBienService {
 	
 			Map<String, String> map = null;
 	        while((line = br.readLine()) != null){
+	        	System.out.println(line);
 				map = parseLine(line);
 	            if(map!=null){
 					res.add(map);
