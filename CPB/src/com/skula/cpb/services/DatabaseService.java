@@ -34,8 +34,8 @@ public class DatabaseService {
 		insertParam(Cnst.PARAM_PW_TRANSMISSION, "salope");
 		
 		insertParam(Cnst.PARAM_LOGIN_BETASERIES, "skula");
-		insertParam(Cnst.PARAM_PW_BETASERIES,"");
-		insertParam(Cnst.PARAM_KEY_BETASERIES,"");
+		insertParam(Cnst.PARAM_PW_BETASERIES,"!bitch5?");
+		insertParam(Cnst.PARAM_KEY_BETASERIES,"8044679e84db");
 	}
 
 	public void insertParam(String name, String value) {

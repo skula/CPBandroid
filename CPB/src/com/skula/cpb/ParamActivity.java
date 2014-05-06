@@ -29,16 +29,16 @@ public class ParamActivity extends Activity {
 		setContentView(R.layout.param_layout);
 	
 		this.dbService = new DatabaseService(this);
-		//dbService.bouchon();
+		dbService.bouchon();
 		
 		this.transIp = (EditText) findViewById(R.id.trans_ip);
 		this.transPort = (EditText) findViewById(R.id.trans_port);
 		this.transLogin = (EditText) findViewById(R.id.trans_login);
 		this.transPw = (EditText) findViewById(R.id.trans_pw);
 		
-		//this.betaLogin = (EditText) findViewById(R.id.beta_login);
-		//this.betaPw = (EditText) findViewById(R.id.beta_pw);
-		//this.betaKey = (EditText) findViewById(R.id.beta_key);
+		this.betaLogin = (EditText) findViewById(R.id.beta_login);
+		this.betaPw = (EditText) findViewById(R.id.beta_pw);
+		this.betaKey = (EditText) findViewById(R.id.beta_key);
 		
 		Button btnSave = (Button)findViewById(R.id.btn_save);
 		btnSave.setOnClickListener(new OnClickListener() {
@@ -65,9 +65,9 @@ public class ParamActivity extends Activity {
 		String strTransLogin = transLogin.getText().toString();
 		String strTransPw = transPw.getText().toString();
 		
-		//String strBetaLogin = betaLogin.getText().toString();
-		//String strBetaPw = betaPw.getText().toString();
-		//String strBetaKey = betaKey.getText().toString();
+		String strBetaLogin = betaLogin.getText().toString();
+		String strBetaPw = betaPw.getText().toString();
+		String strBetaKey = betaKey.getText().toString();
 		
 		if(strTransIp.isEmpty()){
 			Toast.makeText(this,"L'IP pour Transmission est vide",Toast.LENGTH_SHORT);
@@ -90,7 +90,7 @@ public class ParamActivity extends Activity {
 			return;
 		}
 		
-		/*if(strBetaLogin.isEmpty()){
+		if(strBetaLogin.isEmpty()){
 			Toast.makeText(this,"Le login pour Betaseries est vide",Toast.LENGTH_SHORT);
 			return;
 		}
@@ -101,16 +101,16 @@ public class ParamActivity extends Activity {
 		if(strBetaKey.isEmpty()){
 			Toast.makeText(this,"La clé pour Betaseries est vide",Toast.LENGTH_SHORT);
 			return;
-		}*/
+		}
 		
 		dbService.updateParam(Cnst.PARAM_IP_TRANSMISSION, strTransIp);
 		dbService.updateParam(Cnst.PARAM_PORT_TRANSMISSION, strTransPort);
 		dbService.updateParam(Cnst.PARAM_LOGIN_TRANSMISSION, strTransLogin);
 		dbService.updateParam(Cnst.PARAM_PW_TRANSMISSION, strTransPw);
 		
-		/*dbService.updateParam(Cnst.PARAM_LOGIN_BETASERIES, strBetaLogin);
+		dbService.updateParam(Cnst.PARAM_LOGIN_BETASERIES, strBetaLogin);
 		dbService.updateParam(Cnst.PARAM_PW_BETASERIES, strBetaPw);
-		dbService.updateParam(Cnst.PARAM_KEY_BETASERIES, strBetaKey);*/
+		dbService.updateParam(Cnst.PARAM_KEY_BETASERIES, strBetaKey);
 		this.finish();
 	}
 
@@ -119,11 +119,9 @@ public class ParamActivity extends Activity {
 		this.transPort.setText(dbService.getParam(Cnst.PARAM_PORT_TRANSMISSION));
 		this.transLogin.setText(dbService.getParam(Cnst.PARAM_LOGIN_TRANSMISSION));
 		this.transPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));
-		//this.transPw.setText("********");
 		
-		/*this.betaLogin.setText(dbService.getParam(Cnst.PARAM_LOGIN_BETASERIES));
-		//this.betaPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));
-		this.betaPw.setText("**************");
-		this.betaKey.setText(dbService.getParam(Cnst.PARAM_KEY_BETASERIES));*/
+		this.betaLogin.setText(dbService.getParam(Cnst.PARAM_LOGIN_BETASERIES));
+		this.betaPw.setText(dbService.getParam(Cnst.PARAM_PW_TRANSMISSION));
+		this.betaKey.setText(dbService.getParam(Cnst.PARAM_KEY_BETASERIES));
 	}
 }

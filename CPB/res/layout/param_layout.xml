@@ -103,7 +103,8 @@
         <EditText
             android:id="@+id/trans_pw"
             android:layout_width="300px"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:password="true"/>
     </LinearLayout>
     
     <TextView
@@ -154,7 +155,8 @@
         <EditText
             android:id="@+id/beta_pw"
             android:layout_width="300px"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" 
+            android:password="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -175,7 +177,8 @@
         <EditText
             android:id="@+id/beta_key"
             android:layout_width="300px"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" 
+            android:password="true"/>
     </LinearLayout>
 
     <Button
