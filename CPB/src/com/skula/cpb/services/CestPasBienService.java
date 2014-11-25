@@ -54,11 +54,15 @@ public class CestPasBienService {
 	
 			Map<String, String> map = null;
 	        while((line = br.readLine()) != null){
-	        	System.out.println(line);
+	        	/*System.out.println(line);
 				map = parseLine(line);
 	            if(map!=null){
 					res.add(map);
-				}	
+				}	*/
+	        	if(line.contains(DL_TORRENT_URL) && (line.contains("class=\"titre\""))){
+	           
+	        		res = parseList(line);
+	        	}
 	        }
 			
 	        //System.out.println(response.toString());
@@ -118,7 +122,39 @@ public class CestPasBienService {
         map.put("label",label);
         return map;
   }
-	
+
+	private static Map<String, String> parseItem(String line) {
+        Map<String, String> res = new HashMap<String, String>();
+        String url = line.substring(8, line.indexOf(".html\" title="));
+        url = url.substring((url.lastIndexOf("/") + 1));
+
+        res.put("url", TORRENT_URL + url + ".torrent");
+        String title = line.substring(line.indexOf("class=\"titre\">") + 14);
+        res.put("label", title);
+
+        return res;
+  }
+
+  public static List<Map<String, String>> parseList(String line) {
+        List<Map<String, String>> res = new ArrayList<Map<String, String>>();
+
+        String s3 = line;
+        int a = s3.indexOf("a href=\"");
+        try {
+               while (a != -1) {
+                      int b = s3.indexOf("</a><div class");
+                      String s = s3.substring(a, b);
+                      res.add(parseItem(s));
+                      s3 = s3.substring(b + 14);
+                      a = s3.indexOf("a href=\"");
+               }
+        } catch (Exception e) {
+               e.getMessage();
+               return null;
+        }
+       
+        return res;
+  }
 	/*private static Map<String, String> parseLine(String s2){
 		if(!s2.contains(DL_TORRENT_URL)){
 			return null;
