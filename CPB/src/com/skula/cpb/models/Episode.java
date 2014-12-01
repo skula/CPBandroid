@@ -9,6 +9,7 @@ public class Episode {
 	private String title;
 	private int season;
 	private int number;
+	private String shortcut;
 
 	public Episode() {
 	}
@@ -23,6 +24,13 @@ public class Episode {
 		this.title = title;
 		this.season = Integer.valueOf(id.substring(id.indexOf("S")+1,id.indexOf("E")));		
 		this.number = Integer.valueOf(id.substring(id.indexOf("E")+1));
+	}
+	
+	public Episode(String title, String id, String shortcut) {
+		this.title = title;
+		this.season = Integer.valueOf(id.substring(id.indexOf("S")+1,id.indexOf("E")));		
+		this.number = Integer.valueOf(id.substring(id.indexOf("E")+1));
+		this.shortcut = shortcut;
 	}
 
 	public void setTitle(String title) {
@@ -49,6 +57,14 @@ public class Episode {
 		return this.number;
 	}
 	
+	public String getShortcut() {
+		return shortcut;
+	}
+
+	public void setShortcut(String shortcut) {
+		this.shortcut = shortcut;
+	}
+
 	public String toString(){
 		String s = "s" + (season < 10 ? "0" : "") + season;
 		String n = "e" + (number < 10 ? "0" : "") + number;
