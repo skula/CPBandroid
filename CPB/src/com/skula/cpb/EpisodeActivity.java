@@ -1,5 +1,6 @@
 package com.skula.cpb;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -42,6 +43,7 @@ public class EpisodeActivity extends Activity {
 	private void updateList() {
 		try{
 		List<Episode> list = btService.getUnseenEpisodes2();
+		Collections.sort(list);
 		Episode itemArray[] = (Episode[]) list.toArray(new Episode[list.size()]);
 		EpisodeAdapter adapter = new EpisodeAdapter(this, R.layout.episodeitemlayout, itemArray);
 		itemList.setAdapter(adapter);

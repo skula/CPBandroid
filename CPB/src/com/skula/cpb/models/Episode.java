@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Episode {
+public class Episode implements Comparable<Episode>{
 	private String title;
 	private int season;
 	private int number;
@@ -69,5 +69,11 @@ public class Episode {
 		String s = "s" + (season < 10 ? "0" : "") + season;
 		String n = "e" + (number < 10 ? "0" : "") + number;
 		return title + " " + s + n;
+	}
+
+	@Override
+	public int compareTo(Episode other) {
+		int last = this.toString().compareTo(other.toString());
+		return last;
 	}
 }
