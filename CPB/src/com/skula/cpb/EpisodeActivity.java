@@ -1,5 +1,7 @@
 package com.skula.cpb;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -34,14 +36,17 @@ public class EpisodeActivity extends Activity {
 				Episode item = (Episode) itemList.getItemAtPosition(position);	
 			}
 		});
-		
-		
 	}
 
 	private void updateList() {
-		/*Episode itemArray[] = (Episode[]) list.toArray(new ExplorerItem[list.size()]);
-		ItemAdapter adapter = new ItemAdapter(this, R.layout.itemlayout, itemArray);
-		itemList.setAdapter(adapter);*/
+		try{
+		List<Episode> list = btService.getUnseenEpisodes2();
+		Episode itemArray[] = (Episode[]) list.toArray(new Episode[list.size()]);
+		EpisodeAdapter adapter = new EpisodeAdapter(this, R.layout.episodeitemlayout, itemArray);
+		itemList.setAdapter(adapter);
+		}catch(Exception e){
+			e.getMessage();
+		}
 	}
 /*
 	@Override

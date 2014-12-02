@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.skula.cpb.models.Episode;
 
@@ -27,8 +28,14 @@ public class EpisodeAdapter extends ArrayAdapter<Episode> {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.episodeitemlayout, parent, false);
 		
-		//TextView id = (TextView) rowView.findViewById(R.id.id);
-		//id.setText(torrent.getId());	
+		TextView shortcut = (TextView) rowView.findViewById(R.id.episode_shortcut);
+		shortcut.setText(episode.getShortcut());	
+		TextView season = (TextView) rowView.findViewById(R.id.episode_season);
+		season.setText(episode.getSeason()+"");
+		TextView number = (TextView) rowView.findViewById(R.id.episode_number);
+		number.setText(episode.getNumber()+"");
+		TextView label = (TextView) rowView.findViewById(R.id.episode_label);
+		label.setText(episode.toString());
 		
 		return rowView;
 	}

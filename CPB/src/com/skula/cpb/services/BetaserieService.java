@@ -77,6 +77,33 @@ public class BetaserieService {
 		return res;
 	}
 	
+	public List<Episode> getUnseenEpisodes2(){
+		if(this.token==null){
+			return null;
+		}
+		
+		List<Episode> res = new ArrayList<Episode>();
+		try{
+			String url = DOMAIN + "members/episodes/all.xml?view=all&token=" + this.token + "&key=" + key;
+			String xml = XmlUtils.getStringFromUrl(url);
+			InputSource is = new InputSource(new StringReader(xml));
+			NodeList nl = (NodeList) this.xpath.evaluate("//episodes/episode", is,
+					XPathConstants.NODESET);
+			Episode ep = null;
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node d = nl.item(i);
+				Element e = (Element) nl.item(i);
+				String title = XmlUtils.getValue(e, "show");
+				String number = XmlUtils.getValue(e, "number");
+				String showUrl = XmlUtils.getValue(e, "url");
+				ep = new Episode(title, number, showUrl);
+				res.add(ep);
+			}
+		}catch(XPathExpressionException e){
+		}
+		return res;
+	}
+	
 	public boolean setEpisodeDownloaded(String shortCutTitle, String season, String episode){
 		if(this.token==null){
 			return false;
