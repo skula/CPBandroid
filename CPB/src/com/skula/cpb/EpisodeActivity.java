@@ -33,7 +33,8 @@ public class EpisodeActivity extends Activity {
 
 		itemList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-				Episode item = (Episode) itemList.getItemAtPosition(position);	
+				Episode item = (Episode) itemList.getItemAtPosition(position);
+				item.getNumber();
 			}
 		});
 	}
