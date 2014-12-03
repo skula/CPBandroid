@@ -141,18 +141,22 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent = null;
 		switch(item.getItemId()){
 		case R.id.refresh:
 			updateEpisodeList();
 			return true;
-		case R.id.param:
-			Intent intent = new Intent(this,
-					ParamActivity.class);
-			try{
+		case R.id.betaseries:
+			intent = new Intent(this, EpisodeActivity.class);
 			startActivity(intent);
-			}catch(Exception e){
-				e.getMessage();
-			}
+			return true;
+		case R.id.transmission:
+			intent = new Intent(this, DownloadingActivity.class);
+			startActivity(intent);
+			return true;
+		case R.id.param:
+			intent = new Intent(this, ParamActivity.class);
+			startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

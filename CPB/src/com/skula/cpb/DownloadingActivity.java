@@ -1,8 +1,5 @@
 package com.skula.cpb;
 
-import java.util.Collections;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,50 +11,37 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.skula.cpb.models.Episode;
-import com.skula.cpb.services.BetaserieService;
 import com.skula.cpb.services.DatabaseService;
 
-public class EpisodeActivity extends Activity {
+public class DownloadingActivity extends Activity {
 	private ListView itemList;
 	private DatabaseService dbService;
-	private BetaserieService btService;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		setContentView(R.layout.episodeslayout);
+		setContentView(R.layout.downloadingslayout);
 
-		btService = new BetaserieService();
 		dbService = new DatabaseService(this);
-		itemList = (ListView) findViewById(R.id.episode_list);
+		itemList = (ListView) findViewById(R.id.dl_list);
 		updateList();
 
 		itemList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-				Episode item = (Episode) itemList.getItemAtPosition(position);
-				item.getNumber();
+			
 			}
 		});
 	}
 
 	private void updateList() {
-		try{
-		List<Episode> list = btService.getUnseenEpisodes2();
-		Collections.sort(list);
-		Episode itemArray[] = (Episode[]) list.toArray(new Episode[list.size()]);
-		EpisodeAdapter adapter = new EpisodeAdapter(this, R.layout.episodeitemlayout, itemArray);
-		itemList.setAdapter(adapter);
-		}catch(Exception e){
-			e.getMessage();
-		}
+		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.betaseries, menu);
+		getMenuInflater().inflate(R.menu.transmission, menu);
 		return true;
 	}
 
@@ -68,8 +52,8 @@ public class EpisodeActivity extends Activity {
 			intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			return true;
-		case R.id.transmission:
-			intent = new Intent(this, DownloadingActivity.class);
+		case R.id.betaseries:
+			intent = new Intent(this, EpisodeActivity.class);
 			startActivity(intent);
 			return true;
 		case R.id.param:
@@ -80,6 +64,4 @@ public class EpisodeActivity extends Activity {
 			return false;
 		}
 	}
-
-	
 }
