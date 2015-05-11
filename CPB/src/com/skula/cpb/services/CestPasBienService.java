@@ -18,7 +18,7 @@ public class CestPasBienService {
 	
 	private static final String SEARCH_URL = "http://www.cpasbien.pw/recherche/";
 	private static final String DL_TORRENT_URL = "http://www.cpasbien.pw/dl-torrent";
-	private static final String TORRENT_URL = "http://www.cpasbien.pw/_torrents/";
+	private static final String TORRENT_URL = "http://www.cpasbien.pw/telechargement/";
 	private static final String PARAMS = "champ_recherche=";
 
 	
@@ -54,13 +54,7 @@ public class CestPasBienService {
 	
 			Map<String, String> map = null;
 	        while((line = br.readLine()) != null){
-	        	/*System.out.println(line);
-				map = parseLine(line);
-	            if(map!=null){
-					res.add(map);
-				}	*/
 	        	if(line.contains(DL_TORRENT_URL) && (line.contains("class=\"titre\""))){
-	           
 	        		res = parseList(line);
 	        	}
 	        }
@@ -80,49 +74,6 @@ public class CestPasBienService {
 		return res;
 	}
 	
-	public static Map<String, String> parseLine(String s2){
-        if(!s2.contains(DL_TORRENT_URL) || (!s2.contains("class=\"titre\""))){
-               return null;
-        }
-       
-        if(s2.contains("<!--")){
-               return null;
-        }
-       
-        //System.out.println(s2);
-        Map<String, String> map = new HashMap<String, String>();
-        
-        String s3=s2;
-        int a = s3.indexOf("a href=\"");
-        List<String> l = new ArrayList<String>();
-        try{
-        	while(a!=-1){
-	            int b = s3.indexOf("</a><div class");
-	            String s = s3.substring(a,b);        	
-	            l.add(s);
-	            s3 = s3.substring(b+14);
-	            a = s3.indexOf("a href=\"");
-	        }
-        }catch(Exception e){
-        	e.getMessage();
-        }
-        
-        
-        int arrr = l.size();
-        String url = s2;
-        url = url.substring(url.indexOf(DL_TORRENT_URL));
-        url = url.substring(0,url.indexOf(".html"));
-        url = url.substring(url.lastIndexOf("/")+1);
-        url = TORRENT_URL + url + ".torrent";      
-        map.put("url",url);
-       
-        String label = s2;
-        label = label.substring(label.lastIndexOf("\"titre\">")+8, label.lastIndexOf("</a>"));
-        label = label.trim();
-        map.put("label",label);
-        return map;
-  }
-
 	private static Map<String, String> parseItem(String line) {
         Map<String, String> res = new HashMap<String, String>();
         String url = line.substring(8, line.indexOf(".html\" title="));
@@ -155,28 +106,4 @@ public class CestPasBienService {
        
         return res;
   }
-	/*private static Map<String, String> parseLine(String s2){
-		if(!s2.contains(DL_TORRENT_URL)){
-			return null;
-		}
-		
-		if(s2.contains("<!--")){
-			return null;
-		}
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		String url = s2;
-		url = url.substring(url.indexOf(DL_TORRENT_URL));
-		url = url.substring(0,url.indexOf(".html"));
-		url = url.substring(url.lastIndexOf("/")+1);
-		url = TORRENT_URL + url + ".torrent";       
-		map.put("url",url);
-		
-		String label = s2;
-		label = label.substring(label.lastIndexOf("/>")+2, label.lastIndexOf("</a>"));
-		label = label.trim();
-		map.put("label",label);
-		return map;
-	}*/
 }
