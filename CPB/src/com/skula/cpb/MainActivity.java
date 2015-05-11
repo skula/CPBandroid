@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		this.dbService = new DatabaseService(this);
+		//this.dbService.bouchon();
 		this.betaSrv = new BetaserieService();
 		updateEpisodeList();
 		//Toast.makeText(this, "Aucune connexion au réseau !", Toast.LENGTH_SHORT).show();
