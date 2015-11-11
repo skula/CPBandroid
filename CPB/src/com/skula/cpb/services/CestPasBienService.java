@@ -16,9 +16,9 @@ public class CestPasBienService {
 	private static final String USER_ARENT = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11";
 	private static final String COOKIE = ""; //__cfduid=df83fae0487b4e39f73f8837ca250e35e1369247829
 	
-	private static final String SEARCH_URL = "http://www.cpasbien.pw/recherche/";
-	private static final String DL_TORRENT_URL = "http://www.cpasbien.pw/dl-torrent";
-	private static final String TORRENT_URL = "http://www.cpasbien.pw/telechargement/";
+	private static final String SEARCH_URL = "http://www.cpasbien.io/recherche/";
+	private static final String DL_TORRENT_URL = "http://www.cpasbien.io/dl-torrent";
+	private static final String TORRENT_URL = "http://www.cpasbien.io/telechargement/";
 	private static final String PARAMS = "champ_recherche=";
 
 	
